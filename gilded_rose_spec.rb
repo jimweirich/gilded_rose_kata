@@ -4,11 +4,12 @@ require 'gilded_rose'
 describe "#update_quality_of" do
   Given(:sell_in) { 5 }
   Given(:quality) { 10 }
+  Given(:item) { Item.new(name, sell_in, quality) }
 
   When { update_quality_of(item) }
 
   context "with a normal item" do
-    Given(:item) { Item.new("NORMAL ITEM", sell_in, quality) }
+    Given(:name) { "NORMAL ITEM" }
 
     context "before sell date" do
       Then { item.quality.should == quality - 1 }
@@ -34,7 +35,7 @@ describe "#update_quality_of" do
   end
 
   context "with Aged Brie" do
-    Given(:item) { Item.new("Aged Brie", sell_in, quality) }
+    Given(:name) { "Aged Brie" }
 
     context "before sell date" do
       Then { item.quality.should == quality+1 }
@@ -63,7 +64,7 @@ describe "#update_quality_of" do
 
   context "with  Sulfuras" do
     Given(:quality) { 80 }
-    Given(:item) { Item.new("Sulfuras, Hand of Ragnaros", sell_in, quality) }
+    Given(:name) { "Sulfuras, Hand of Ragnaros" }
 
     context "before sell date" do
       Then { item.quality.should == quality }
@@ -84,7 +85,7 @@ describe "#update_quality_of" do
   end
 
   context "with Backstage passes" do
-    Given(:item) { Item.new("Backstage passes to a TAFKAL80ETC concert", sell_in, quality) }
+    Given(:name) { "Backstage passes to a TAFKAL80ETC concert" }
 
     context "long before sell date" do
       Given(:sell_in) { 11 }
@@ -118,6 +119,44 @@ describe "#update_quality_of" do
       Given(:sell_in) { -10 }
       Then { item.quality.should == 0 }
       Then { item.sell_in.should == sell_in-1 }
+    end
+  end
+
+  context "with conjured items" do
+    before { pending }
+    Given(:name) { "Conjured Mana Cake" }
+
+    context "before the sell date" do
+      Given(:sell_in) { 5 }
+      Then { item.quality.should == quality-2 }
+      Then { item.sell_in.should == sell_in-1 }
+
+      context "at zero quality" do
+        Given(:quality) { 0 }
+        Then { item.quality.should == quality }
+      end
+    end
+
+    context "on sell date" do
+      Given(:sell_in) { 0 }
+      Then { item.quality.should == quality-2 }
+      Then { item.sell_in.should == sell_in-1 }
+
+      context "at zero quality" do
+        Given(:quality) { 0 }
+        Then { item.quality.should == quality }
+      end
+    end
+
+    context "after sell date" do
+      Given(:sell_in) { -10 }
+      Then { item.quality.should == quality-2 }
+      Then { item.sell_in.should == sell_in-1 }
+
+      context "at zero quality" do
+        Given(:quality) { 0 }
+        Then { item.quality.should == quality }
+      end
     end
   end
 end

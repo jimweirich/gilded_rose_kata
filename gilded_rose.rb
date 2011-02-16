@@ -5,6 +5,7 @@ def update_quality
 end
 
 def update_quality_of(item)
+
   if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
     if item.quality > 0
       if item.name != 'Sulfuras, Hand of Ragnaros'
@@ -49,6 +50,8 @@ def update_quality_of(item)
     end
   end
 end
+
+# DO NOT CHANGE THINGS BELOW -----------------------------------------
 
 Item = Struct.new(:name, :sell_in, :quality)
 

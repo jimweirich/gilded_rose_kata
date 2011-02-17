@@ -18,9 +18,28 @@ class QualityUpdater
     end
   end
 
+  class BrieQualityUpdater
+    def update_quality(item)
+      if item.sell_in <= 0
+        bump(item, 2)
+      else
+        bump(item, 1)
+      end
+    end
+    def update_sell_in(item)
+      item.sell_in -= 1
+    end
+    def bump(item, amount)
+      item.quality += amount
+      item.quality = 50 if item.quality >= 50
+    end
+  end
+
   def update_one(item)
     if item.name == 'Sulfuras, Hand of Ragnaros'
       updater = NoopQualityUpdater.new
+    elsif item.name == 'Aged Brie'
+      updater = BrieQualityUpdater.new
     else
       updater = nil
     end

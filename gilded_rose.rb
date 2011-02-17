@@ -11,12 +11,28 @@ class QualityUpdater
 
   private
 
+  class NoopQualityUpdater
+    def update_quality(item)
+    end
+    def update_sell_in(item)
+    end
+  end
+
   def update_one(item)
+    if item.name == 'Sulfuras, Hand of Ragnaros'
+      updater = NoopQualityUpdater.new
+    else
+      updater = nil
+    end
+    if updater
+      updater.update_quality(item)
+      updater.update_sell_in(item)
+      return
+    end
+
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
       if item.quality > 0
-        if item.name != 'Sulfuras, Hand of Ragnaros'
-          item.quality -= 1
-        end
+        item.quality -= 1
       end
     else
       if item.quality < 50
@@ -35,9 +51,7 @@ class QualityUpdater
         end
       end
     end
-    if item.name != 'Sulfuras, Hand of Ragnaros'
-      item.sell_in -= 1
-    end
+    item.sell_in -= 1
     if item.sell_in < 0
       if item.name != "Aged Brie"
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'

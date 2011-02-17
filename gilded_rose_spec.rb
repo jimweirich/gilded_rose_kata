@@ -105,9 +105,42 @@ describe "#update_quality" do
         end
       end
 
-      context "closer to sell date" do
+      context "medium close to sell date (upper bound)" do
         Given(:sell_in) { 10 }
         Then { item.quality.should == quality+2 }
+        Then { item.sell_in.should == sell_in-1 }
+
+        context "at max quality" do
+          Given(:quality) { 50 }
+          Then { item.quality.should == quality }
+        end
+      end
+
+      context "medium close to sell date (lower bound)" do
+        Given(:sell_in) { 6 }
+        Then { item.quality.should == quality+2 }
+        Then { item.sell_in.should == sell_in-1 }
+
+        context "at max quality" do
+          Given(:quality) { 50 }
+          Then { item.quality.should == quality }
+        end
+      end
+
+      context "very close to sell date (upper bound)" do
+        Given(:sell_in) { 5 }
+        Then { item.quality.should == quality+3 }
+        Then { item.sell_in.should == sell_in-1 }
+
+        context "at max quality" do
+          Given(:quality) { 50 }
+          Then { item.quality.should == quality }
+        end
+      end
+
+      context "very close to sell date (lower bound)" do
+        Given(:sell_in) { 1 }
+        Then { item.quality.should == quality+3 }
         Then { item.sell_in.should == sell_in-1 }
 
         context "at max quality" do

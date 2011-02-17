@@ -67,10 +67,17 @@ class QualityUpdater
     end
   end
 
+  class ConjuredItemQualityUpdater < StandardQualityUpdater
+    def update_quality(item)
+      bump(item, -2)
+    end
+  end
+
   UPDATERS = [
     [/^Sulfuras, Hand of Ragnaros$/, NoopQualityUpdater.new],
     [/^Aged Brie$/, BrieQualityUpdater.new],
     [/^Backstage passes to a TAFKAL80ETC concert$/, BackstagePassQualityUpdater.new],
+    [/^Conjured /, ConjuredItemQualityUpdater.new],
   ]
 
   def update_one(item)

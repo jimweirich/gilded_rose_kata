@@ -56,6 +56,24 @@ class QualityUpdater
     end
   end
 
+  class StandardQualityUpdater
+    def update_quality(item)
+      if item.sell_in <= 0
+        bump(item, -2)
+      else
+        bump(item, -1)
+      end
+    end
+    def update_sell_in(item)
+      item.sell_in -= 1
+    end
+    def bump(item, amount)
+      item.quality += amount
+      item.quality = 50 if item.quality > 50
+      item.quality = 0 if item.quality < 0
+    end
+  end
+
   def update_one(item)
     if item.name == 'Sulfuras, Hand of Ragnaros'
       updater = NoopQualityUpdater.new
@@ -64,7 +82,7 @@ class QualityUpdater
     elsif item.name == 'Backstage passes to a TAFKAL80ETC concert'
       updater = BackstagePassQualityUpdater.new
     else
-      updater = nil
+      updater = StandardQualityUpdater.new
     end
 
     if updater

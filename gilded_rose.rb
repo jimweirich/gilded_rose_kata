@@ -11,19 +11,12 @@ class QualityUpdater
 
   private
 
-  class NoopQualityUpdater
-    def update_quality(item)
-    end
-    def update_sell_in(item)
-    end
-  end
-
-  class BrieQualityUpdater
+  class StandardQualityUpdater
     def update_quality(item)
       if item.sell_in <= 0
-        bump(item, 2)
+        bump(item, -2)
       else
-        bump(item, 1)
+        bump(item, -1)
       end
     end
     def update_sell_in(item)
@@ -31,7 +24,25 @@ class QualityUpdater
     end
     def bump(item, amount)
       item.quality += amount
-      item.quality = 50 if item.quality >= 50
+      item.quality = 50 if item.quality > 50
+      item.quality = 0 if item.quality < 0
+    end
+  end
+
+  class NoopQualityUpdater
+    def update_quality(item)
+    end
+    def update_sell_in(item)
+    end
+  end
+
+  class BrieQualityUpdater < StandardQualityUpdater
+    def update_quality(item)
+      if item.sell_in <= 0
+        bump(item, 2)
+      else
+        bump(item, 1)
+      end
     end
   end
 
@@ -53,24 +64,6 @@ class QualityUpdater
     def bump(item, amount)
       item.quality += amount
       item.quality = 50 if item.quality >= 50
-    end
-  end
-
-  class StandardQualityUpdater
-    def update_quality(item)
-      if item.sell_in <= 0
-        bump(item, -2)
-      else
-        bump(item, -1)
-      end
-    end
-    def update_sell_in(item)
-      item.sell_in -= 1
-    end
-    def bump(item, amount)
-      item.quality += amount
-      item.quality = 50 if item.quality > 50
-      item.quality = 0 if item.quality < 0
     end
   end
 

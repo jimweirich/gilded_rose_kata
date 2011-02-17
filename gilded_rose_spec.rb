@@ -3,24 +3,12 @@ require 'gilded_rose'
 
 describe "#update_quality" do
 
-  # Horrible hack because +update_quality+ has a bad interface for
-  # testing.
-  def update_items(items)
-    old_items = Items.dup
-    Items.clear
-    items.each do |i| Items << i end
-    update_quality
-  ensure
-    Items.clear
-    old_items.each do |i| Items << i end
-  end
-
   context "with a single" do
     Given(:sell_in) { 5 }
     Given(:quality) { 10 }
     Given(:item) { Item.new(name, sell_in, quality) }
 
-    When { update_items([item]) }
+    When { update_quality([item]) }
 
     context "normal item" do
       Given(:name) { "NORMAL ITEM" }
@@ -188,7 +176,7 @@ describe "#update_quality" do
       ]
     }
 
-    When { update_items(items) }
+    When { update_quality(items) }
 
     Then { items[0].quality.should == 9 }
     Then { items[0].sell_in.should == 4 }

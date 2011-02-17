@@ -12,6 +12,10 @@ class QualityUpdater
   private
 
   class StandardQualityUpdater
+    def update(item)
+      update_quality(item)
+      update_sell_in(item)
+    end
     def update_quality(item)
       if item.sell_in <= 0
         bump(item, -2)
@@ -71,8 +75,7 @@ class QualityUpdater
       updater = StandardQualityUpdater.new
     end
 
-    updater.update_quality(item)
-    updater.update_sell_in(item)
+    updater.update(item)
   end
 end
 

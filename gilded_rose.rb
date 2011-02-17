@@ -5,11 +5,13 @@ end
 class QualityUpdater
   def update(items)
     items.each do |item|
-      update_quality_of(item)
+      update_one(item)
     end
   end
 
-  def update_quality_of(item)
+  private
+
+  def update_one(item)
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
       if item.quality > 0
         if item.name != 'Sulfuras, Hand of Ragnaros'

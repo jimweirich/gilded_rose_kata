@@ -66,6 +66,7 @@ class QualityUpdater
     else
       updater = nil
     end
+
     if updater
       updater.update_quality(item)
       updater.update_sell_in(item)
@@ -79,9 +80,7 @@ class QualityUpdater
     item.sell_in -= 1
     if item.sell_in < 0
       if item.quality > 0
-        if item.name != 'Sulfuras, Hand of Ragnaros'
-          item.quality -= 1
-        end
+        item.quality -= 1
       end
     end
   end

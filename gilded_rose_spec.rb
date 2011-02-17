@@ -54,6 +54,12 @@ describe "#update_quality" do
         Given(:sell_in) { 0 }
         Then { item.quality.should == quality+2 }
         Then { item.sell_in.should == sell_in-1 }
+
+        context "with max quality" do
+          Given(:quality) { 50 }
+          Then { item.quality.should == quality }
+          Then { item.sell_in.should == sell_in-1 }
+        end
       end
 
       context "after sell date" do

@@ -46,7 +46,7 @@ class QualityUpdater
     end
   end
 
-  class BackstagePassQualityUpdater
+  class BackstagePassQualityUpdater < StandardQualityUpdater
     def update_quality(item)
       if item.sell_in > 10
         bump(item, 1)
@@ -57,13 +57,6 @@ class QualityUpdater
       else
         item.quality = 0
       end
-    end
-    def update_sell_in(item)
-      item.sell_in -= 1
-    end
-    def bump(item, amount)
-      item.quality += amount
-      item.quality = 50 if item.quality >= 50
     end
   end
 

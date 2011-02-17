@@ -16,6 +16,7 @@ class QualityUpdater
       update_quality(item)
       update_sell_in(item)
     end
+
     def update_quality(item)
       if item.sell_in <= 0
         bump(item, -2)
@@ -23,9 +24,11 @@ class QualityUpdater
         bump(item, -1)
       end
     end
+
     def update_sell_in(item)
       item.sell_in -= 1
     end
+
     def bump(item, amount)
       item.quality += amount
       item.quality = 50 if item.quality > 50

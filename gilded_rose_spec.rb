@@ -185,7 +185,7 @@ describe "#update_quality" do
 
       context "on sell date" do
         Given(:initial_sell_in) { 0 }
-        Then { item.quality.should == initial_quality-2 }
+        Then { item.quality.should == initial_quality-4 }
         Then { item.sell_in.should == initial_sell_in-1 }
 
         context "at zero quality" do
@@ -196,7 +196,7 @@ describe "#update_quality" do
 
       context "after sell date" do
         Given(:initial_sell_in) { -10 }
-        Then { item.quality.should == initial_quality-2 }
+        Then { item.quality.should == initial_quality-4 }
         Then { item.sell_in.should == initial_sell_in-1 }
 
         context "at zero quality" do

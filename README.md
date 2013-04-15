@@ -1,7 +1,7 @@
 # The Gilded Rose Code Kata
 
 This is a Ruby version of the Gilded Rose Kata, found
-[here](http://www.iamnotmyself.com/2011/02/13/RefactorThisTheGildedRoseKata.aspx).
+[here](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
 
 This is a refactorying kata, so you will be starting with a legacy
 code base.  To work the Kata, clone this git repository and checkout
@@ -23,7 +23,7 @@ following changes:
   items as a parameter rather than a hard coded constant.
 
 You can read
-[the original kata article](http://www.iamnotmyself.com/2011/02/13/RefactorThisTheGildedRoseKata.aspx) for more details.
+[the original kata article](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/) for more details.
 
 ## Git Branches
 

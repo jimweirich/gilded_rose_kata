@@ -25,6 +25,22 @@ following changes:
 You can read
 [the original kata article](http://www.iamnotmyself.com/2011/02/13/RefactorThisTheGildedRoseKata.aspx) for more details.
 
+## Installation Hints
+
+The easiest way is to use bundler to install the dependencies. To do so, you need to install the bundler gem if you haven't already done so
+
+    gem install bundler
+
+run bundler
+
+    bundle
+
+and should be ready to go. Alternatively, you can install the dependencies one by one using gem install, e.g.
+
+    gem install rspec-given
+
+Have a look at the Gemfile for all dependencies.
+
 ## Git Branches
 
 * The 'master' branch contains the starting point for the kata.  It is

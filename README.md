@@ -13,13 +13,13 @@ involving this kata.
 This Ruby version follows the original code very closely, but has the
 following changes:
 
-* The original had no tests.  Since this is a refactoring kata, I felt
-  the tests were important and provide a fairly complete test suite.
+* The original had no tests.  Since this is a refactoring kata, I feel
+  the tests are important and provide a fairly complete test suite.
   Just delete the tests if you wish to "go it alone".
 
 * The original used a hard coded set of "items", presumably for
-  testing the code.  Since I a test suite, the hard coded values were
-  not of much use.  I also changed the interface to accept a list of
+  testing the code.  Since I added a test suite, the hard coded values
+  were not of much use.  I also changed the interface to accept a list of
   items as a parameter rather than a hard coded constant.
 
 You can read
@@ -54,7 +54,7 @@ Hope you enjoy this.     -- Jim Weirich
 # Original Description of the Gilded Rose
 
 Hi and welcome to team Gilded Rose. As you know, we are a small inn
-with a prime location in a prominent city ran by a friendly innkeeper
+with a prime location in a prominent city run by a friendly innkeeper
 named Allison. We also buy and sell only the finest
 goods. Unfortunately, our goods are constantly degrading in quality as
 they approach their sell by date. We have a system in place that

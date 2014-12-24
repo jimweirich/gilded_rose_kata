@@ -162,7 +162,7 @@ describe "#update_quality" do
     end
 
     context "conjured item" do
-      before { pending }
+      before { skip }
       Given(:name) { "Conjured Mana Cake" }
 
       Invariant { item.sell_in.should == initial_sell_in-1 }

@@ -1,3 +1,6 @@
+# GildedRose
+#
+# Main class to process items
 class GildedRose
   attr_reader :items
 
@@ -19,47 +22,96 @@ class GildedRose
   private
 
   def update(item)
+    get_processor(item).update
+  end
+
+  def get_processor(item)
     case item.name
     when NORMAL
-      update_normal(item)
+      NormalItemProcessor.new(item)
     when AGED_BRIE
-      update_brie(item)
+      BrieItemProcessor.new(item)
     when SULFURAS
-      update_sulfuras(item)
+      SulfurasItemProcessor.new(item)
     when BACKSTAGE_PASS
-      update_pass(item)
+      BackstagePassItemProcessor.new(item)
     end
   end
+end
 
-  def update_normal(item)
-    item.quality -= 1 if item.quality > 0 && item.name != SULFURAS
+# ItemProcessor
+#
+# Abstract class to update an item
+class ItemProcessor
+  attr_reader :item
+
+  def initialize(item)
+    @item = item
+  end
+
+  def update
+  end
+end
+
+# NormalItemProcessor
+#
+# Updates a normal item
+class NormalItemProcessor < ItemProcessor
+  def update
     item.sell_in -= 1
-    item.quality -= 1 if item.quality > 0 && item.sell_in < 0
+    if item.quality > 0
+      item.quality -= 1
+      item.quality -= 1 if item.sell_in < 0
+    end
     item
   end
+end
 
-  def update_brie(item)
-    item.quality += 1 if item.quality < 50
+# BrieItemProcessor
+#
+# Updates aged brie
+class BrieItemProcessor < ItemProcessor
+  def update
     item.sell_in -= 1
-    item.quality += 1 if item.sell_in < 0 && item.quality < 50
-    item
-  end
-
-  def update_sulfuras(item)
-    item
-  end
-
-  def update_pass(item)
     if item.quality < 50
       item.quality += 1
-      if item.quality < 50
-        item.quality += 1 if item.sell_in < 11
-        item.quality += 1 if item.sell_in < 6
-      end
+      item.quality += 1 if item.sell_in < 0
     end
-    item.sell_in -= 1
-    item.quality = 0 if item.sell_in < 0
     item
+  end
+end
+
+# SulfurasItemProcessor
+#
+# Updates sulfuras
+class SulfurasItemProcessor < ItemProcessor
+end
+
+# BackstagePassItemProcessor
+#
+# Updates backstage pass
+class BackstagePassItemProcessor < ItemProcessor
+  def update
+    item.sell_in -= 1
+    update_quality(item)
+    item
+  end
+
+  def update_quality(item)
+    if item.sell_in < 0
+      item.quality = 0
+    elsif item.quality < 50
+      item.quality += additional_quality_based_on_age(item.sell_in)
+    end
+    item
+  end
+
+  def additional_quality_based_on_age(sell_in)
+    if sell_in < 10
+      return 3 if sell_in < 5
+      return 2
+    end
+    1
   end
 end
 

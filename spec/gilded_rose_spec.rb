@@ -91,7 +91,7 @@ describe '#update_quality' do
           expect(item.sell_in).to eq(initial_sell_in - 1)
         end
 
-        context "with max quality" do
+        context 'with max quality' do
           let(:initial_quality) { 50 }
 
           it 'leaves quality as-is' do
@@ -327,12 +327,9 @@ describe '#update_quality' do
   end
 
   context 'with several objects' do
-    let(:items) {
-      [
-        Item.new('NORMAL ITEM', 5, 10),
-        Item.new('Aged Brie', 3, 10),
-      ]
-    }
+    let(:item1) { Item.new('NORMAL ITEM', 5, 10) }
+    let(:item2) { Item.new('Aged Brie', 3, 10) }
+    let(:items) { [item1, item2] }
 
     before { update_quality(items) }
 

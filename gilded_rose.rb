@@ -8,6 +8,7 @@ class GildedRose
   AGED_BRIE = 'Aged Brie'
   BACKSTAGE_PASS = 'Backstage passes to a TAFKAL80ETC concert'
   SULFURAS = 'Sulfuras, Hand of Ragnaros'
+  CONJURED = 'Conjured Mana Cake'
 
   def initialize(items)
     @items = items
@@ -31,6 +32,7 @@ class GildedRose
     when AGED_BRIE then AgedBrieItemProcessor.new(item)
     when SULFURAS then SulfurasItemProcessor.new(item)
     when BACKSTAGE_PASS then BackstagePassItemProcessor.new(item)
+    when CONJURED then ConjuredItemProcessor.new(item)
     end
   end
 end
@@ -108,6 +110,17 @@ class BackstagePassItemProcessor < ItemProcessor
       return 2
     end
     1
+  end
+end
+
+# ConjuredItemProcessor
+#
+# Updates a conjured item
+class ConjuredItemProcessor < ItemProcessor
+  def update
+    item.sell_in -= 1
+    item.quality -= 2 unless item.quality.zero?
+    item
   end
 end
 

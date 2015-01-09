@@ -1,38 +1,66 @@
-def update_quality(items)
-  items.each do |item|
-    update(item)
-  end
-end
+class GildedRose
+  attr_reader :items
 
-def update(item)
-  if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
-    if item.quality > 0
-      item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
+  NORMAL = 'NORMAL ITEM'
+  AGED_BRIE = 'Aged Brie'
+  BACKSTAGE_PASS = 'Backstage passes to a TAFKAL80ETC concert'
+  SULFURAS = 'Sulfuras, Hand of Ragnaros'
+
+  def initialize(items)
+    @items = items
+  end
+
+  def update_quality
+    items.each do |item|
+      update(item)
     end
-  else
+  end
+
+  private
+
+  def update(item)
+    case item.name
+    when NORMAL
+      update_normal(item)
+    when AGED_BRIE
+      update_brie(item)
+    when SULFURAS
+      update_sulfuras(item)
+    when BACKSTAGE_PASS
+      update_pass(item)
+    end
+  end
+
+  def update_normal(item)
+    item.quality -= 1 if item.quality > 0 && item.name != SULFURAS
+    item.sell_in -= 1
+    item.quality -= 1 if item.quality > 0 && item.sell_in < 0
+    item
+  end
+
+  def update_brie(item)
+    item.quality += 1 if item.quality < 50
+    item.sell_in -= 1
+    item.quality += 1 if item.sell_in < 0 && item.quality < 50
+    item
+  end
+
+  def update_sulfuras(item)
+    item
+  end
+
+  def update_pass(item)
     if item.quality < 50
       item.quality += 1
-      if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-        item.quality += 1 if item.quality < 50 && item.sell_in < 11
-        item.quality += 1 if item.quality < 50 && item.sell_in < 6
+      if item.quality < 50
+        item.quality += 1 if item.sell_in < 11
+        item.quality += 1 if item.sell_in < 6
       end
     end
+    item.sell_in -= 1
+    item.quality = 0 if item.sell_in < 0
+    item
   end
-  item.sell_in -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
-  if item.sell_in < 0
-    if item.name != 'Aged Brie'
-      if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-        if item.quality > 0
-          item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
-        end
-      else
-        item.quality = item.quality - item.quality
-      end
-    else
-      item.quality += 1 if item.quality < 50
-    end
-  end
-  item
 end
 
 # DO NOT CHANGE THINGS BELOW -----------------------------------------

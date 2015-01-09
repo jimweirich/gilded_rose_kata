@@ -27,14 +27,10 @@ class GildedRose
 
   def get_processor(item)
     case item.name
-    when NORMAL
-      NormalItemProcessor.new(item)
-    when AGED_BRIE
-      BrieItemProcessor.new(item)
-    when SULFURAS
-      SulfurasItemProcessor.new(item)
-    when BACKSTAGE_PASS
-      BackstagePassItemProcessor.new(item)
+    when NORMAL then NormalItemProcessor.new(item)
+    when AGED_BRIE then AgedBrieItemProcessor.new(item)
+    when SULFURAS then SulfurasItemProcessor.new(item)
+    when BACKSTAGE_PASS then BackstagePassItemProcessor.new(item)
     end
   end
 end
@@ -67,10 +63,10 @@ class NormalItemProcessor < ItemProcessor
   end
 end
 
-# BrieItemProcessor
+# AgedBrieItemProcessor
 #
 # Updates aged brie
-class BrieItemProcessor < ItemProcessor
+class AgedBrieItemProcessor < ItemProcessor
   def update
     item.sell_in -= 1
     if item.quality < 50

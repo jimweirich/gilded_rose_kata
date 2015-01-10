@@ -2,7 +2,7 @@ require 'item'
 require 'normal_item_processor'
 require 'aged_brie_item_processor'
 require 'sulfuras_item_processor'
-require 'backstage_item_processor'
+require 'backstage_pass_item_processor'
 require 'conjured_item_processor'
 
 # GildedRose

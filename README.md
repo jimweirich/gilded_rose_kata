@@ -1,3 +1,7 @@
+[![Code Climate](https://codeclimate.com/github/pendletons/gilded_rose_kata/badges/gpa.svg)](https://codeclimate.com/github/pendletons/gilded_rose_kata)
+
+[![Build Status](https://semaphoreapp.com/api/v1/projects/282064e0-47b5-4698-b04c-e6c85a20de50/323799/badge.png)](https://semaphoreapp.com/pendletons/gilded_rose_kata)
+
 # The Gilded Rose Code Kata
 
 This is a Ruby version of the Gilded Rose Kata, found

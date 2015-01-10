@@ -6,10 +6,7 @@ require 'item_processor'
 class DefaultItemProcessor < ItemProcessor
   def update
     item.sell_in -= 1
-    if update_quality?
-      item.quality += quality_modifier
-      item.quality += quality_modifier if after_sell_date?
-    end
+    modify_quality if update_quality?
     item
   end
 
@@ -25,5 +22,9 @@ class DefaultItemProcessor < ItemProcessor
 
   def quality_modifier
     0
+  end
+
+  def modify_quality
+    item.quality += after_sell_date? ? (quality_modifier * 2) : quality_modifier
   end
 end

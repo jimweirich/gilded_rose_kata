@@ -1,15 +1,16 @@
-require 'item_processor'
+require 'default_item_processor'
 
 # NormalItemProcessor
 #
 # Updates a normal item
-class NormalItemProcessor < ItemProcessor
-  def update
-    item.sell_in -= 1
-    if item.quality > 0
-      item.quality -= 1
-      item.quality -= 1 if item.sell_in < 0
-    end
-    item
+class NormalItemProcessor < DefaultItemProcessor
+  private
+
+  def update_quality?
+    item.quality > 0
+  end
+
+  def quality_modifier
+    -1
   end
 end

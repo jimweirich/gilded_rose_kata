@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ConjuredItemProcessor do
   let(:initial_sell_in) { 5 }
   let(:initial_quality) { 10 }
-  let(:name) { GildedRose::CONJURED }
+  let(:name) { ItemType::CONJURED }
   let(:item) { Item.new(name, initial_sell_in, initial_quality) }
 
   describe '#update' do

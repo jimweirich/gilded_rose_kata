@@ -5,7 +5,7 @@ require 'normal_item_processor'
 RSpec.describe NormalItemProcessor do
   let(:initial_sell_in) { 5 }
   let(:initial_quality) { 10 }
-  let(:name) { GildedRose::NORMAL }
+  let(:name) { ItemType::NORMAL }
   let(:item) { Item.new(name, initial_sell_in, initial_quality) }
 
   describe '#update' do

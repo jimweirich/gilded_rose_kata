@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe SulfurasItemProcessor do
   let(:initial_sell_in) { 5 }
   let(:initial_quality) { 10 }
-  let(:name) { GildedRose::SULFURAS }
+  let(:name) { ItemType::SULFURAS }
   let(:item) { Item.new(name, initial_sell_in, initial_quality) }
 
   describe '#update' do

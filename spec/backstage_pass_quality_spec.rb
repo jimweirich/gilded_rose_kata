@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe BackstagePassQuality do
   let(:quality) { 5 }
   let(:age) { 10 }
-  let(:item) { Item.new(GildedRose::BACKSTAGE_PASS, age, quality) }
+  let(:item) { Item.new(ItemType::BACKSTAGE_PASS, age, quality) }
 
   describe '#initialize' do
     subject { described_class.new(item) }

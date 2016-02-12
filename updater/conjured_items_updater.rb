@@ -1,16 +1,16 @@
-class NormalItemUpdater < Updater
+class ConjuredItemUpdater < NormalItemUpdater
 
   def initialize(item)
     super(item)
   end
 
   def update_quality!
-    item.quality -= 1
-    item.quality -= 1 if item.sell_in < 1
+    item.quality -= 2
+    item.quality -= 2 if item.sell_in < 1
   end
 
   def update_sell_in!
-    item.sell_in -= 1
+    super
   end
 
   def sanatize_quality!

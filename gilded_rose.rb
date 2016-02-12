@@ -3,47 +3,6 @@ require_all 'updater'
 
 def update_quality(items)
   items.each do |item|
-    if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
-      if item.name != 'Sulfuras, Hand of Ragnaros'
-        # normal
-        # item.quality -= 1
-      end
-    else
-      # brie, backstage
-      # item.quality += 1
-
-      if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-        # backstage passes
-        # if item.sell_in < 11
-        #   item.quality += 1
-        # end
-        # if item.sell_in < 6
-        #   item.quality += 1
-        # end
-      end
-
-    end
-    if item.name != 'Sulfuras, Hand of Ragnaros'
-      # normal, backstage, brie
-      # item.sell_in -= 1
-    end
-    if item.sell_in < 0
-      if item.name != "Aged Brie"
-        if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-          if item.name != 'Sulfuras, Hand of Ragnaros'
-            # normal
-            # item.quality -= 1
-          end
-        else
-          # backstage passes
-          # item.quality = item.quality - item.quality
-        end
-      else
-        # aged brie
-        # item.quality += 1
-      end
-    end
-
     updater = Updater.new(item)
     updater.update
   end

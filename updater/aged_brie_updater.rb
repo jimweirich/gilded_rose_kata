@@ -14,8 +14,7 @@ class AgedBrieUpdater < Updater
   end
 
   def sanatize_quality!
-    item.quality = 50 if item.quality > 50
-    item.quality = 0  if item.quality < 0
+    super
   end
 
 end

@@ -7,6 +7,10 @@ class Updater
 
   def updater
     case item.name
+    when 'Aged Brie'
+      AgedBrieUpdater.new(item)
+    when 'Backstage passes to a TAFKAL80ETC concert'
+      BackstagePassesUpdater.new(item)
     when 'Sulfuras, Hand of Ragnaros'
       SulfurasUpdater.new(item)
     else
@@ -15,8 +19,8 @@ class Updater
   end
 
   def update
-    # updater.update_quality!
-    # updater.update_sell_in!
+    updater.update_quality!
+    updater.update_sell_in!
     updater.sanatize_quality!
   end
 

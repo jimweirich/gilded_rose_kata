@@ -105,68 +105,81 @@ RSpec.describe '#update_quality' do
       end
     end
 
-    context "Backstage pass" do
-      Given(:name) { "Backstage passes to a TAFKAL80ETC concert" }
+    context 'Backstage pass' do
+      let(:name) { 'Backstage passes to a TAFKAL80ETC concert' }
 
-      Invariant { item.sell_in.should == initial_sell_in-1 }
+      before { expect(item.sell_in).to eq(initial_sell_in - 1) }
 
-      context "long before sell date" do
-        Given(:initial_sell_in) { 11 }
-        Then { item.quality.should == initial_quality+1 }
+      context 'long before sell date' do
+        let(:initial_sell_in) { 11 }
 
-        context "at max quality" do
-          Given(:initial_quality) { 50 }
+        it { expect(item.quality).to eq(initial_quality + 1) }
+
+        context 'at max quality' do
+          let(:initial_quality) { 50 }
+
+          it { expect(item.sell_in).to eq(initial_sell_in - 1) }
         end
       end
 
-      context "medium close to sell date (upper bound)" do
-        Given(:initial_sell_in) { 10 }
-        Then { item.quality.should == initial_quality+2 }
+      context 'medium close to sell date (upper bound)' do
+        let(:initial_sell_in) { 10 }
 
-        context "at max quality" do
-          Given(:initial_quality) { 50 }
-          Then { item.quality.should == initial_quality }
+        it { expect(item.quality).to eq(initial_quality + 2) }
+
+        context 'at max quality' do
+          let(:initial_quality) { 50 }
+
+          it { expect(item.quality).to eq(initial_quality) }
         end
       end
 
-      context "medium close to sell date (lower bound)" do
-        Given(:initial_sell_in) { 6 }
-        Then { item.quality.should == initial_quality+2 }
+      context 'medium close to sell date (lower bound)' do
+        let(:initial_sell_in) { 6 }
 
-        context "at max quality" do
-          Given(:initial_quality) { 50 }
-          Then { item.quality.should == initial_quality }
+        it { expect(item.quality).to eq(initial_quality + 2) }
+
+        context 'at max quality' do
+          let(:initial_quality) { 50 }
+
+          it { expect(item.quality).to eq(initial_quality) }
         end
       end
 
-      context "very close to sell date (upper bound)" do
-        Given(:initial_sell_in) { 5 }
-        Then { item.quality.should == initial_quality+3 }
+      context 'very close to sell date (upper bound)' do
+        let(:initial_sell_in) { 5 }
 
-        context "at max quality" do
-          Given(:initial_quality) { 50 }
-          Then { item.quality.should == initial_quality }
+        it { expect(item.quality).to eq(initial_quality + 3) }
+
+        context 'at max quality' do
+          let(:initial_quality) { 50 }
+
+          it { expect(item.quality).to eq(initial_quality) }
         end
       end
 
-      context "very close to sell date (lower bound)" do
-        Given(:initial_sell_in) { 1 }
-        Then { item.quality.should == initial_quality+3 }
+      context 'very close to sell date (lower bound)' do
+        let(:initial_sell_in) { 1 }
 
-        context "at max quality" do
-          Given(:initial_quality) { 50 }
-          Then { item.quality.should == initial_quality }
+        it { expect(item.quality).to eq(initial_quality + 3) }
+
+        context 'at max quality' do
+          let(:initial_quality) { 50 }
+
+          it { expect(item.quality).to eq(initial_quality) }
         end
       end
 
-      context "on sell date" do
-        Given(:initial_sell_in) { 0 }
-        Then { item.quality.should == 0 }
+      context 'on sell date' do
+        let(:initial_sell_in) { 0 }
+
+        it { expect(item.quality).to eq(0) }
       end
 
-      context "after sell date" do
-        Given(:initial_sell_in) { -10 }
-        Then { item.quality.should == 0 }
+      context 'after sell date' do
+        let(:initial_sell_in) { -10 }
+
+        it { expect(item.quality).to eq(0) }
       end
     end
 

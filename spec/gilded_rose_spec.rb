@@ -1,5 +1,5 @@
 require 'rspec/given'
-require 'gilded_rose'
+require 'lib/gilded_rose'
 
 RSpec.describe '#update_quality' do
   context 'with a single' do

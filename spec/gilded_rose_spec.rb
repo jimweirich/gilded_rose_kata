@@ -206,20 +206,19 @@ RSpec.describe '#update_quality' do
     end
   end
 
-  context "with several objects" do
-    Given(:items) {
+  context 'with several objects' do
+    let(:items) {
       [
-        Item.new("NORMAL ITEM", 5, 10),
-        Item.new("Aged Brie", 3, 10),
+        Item.new('NORMAL ITEM', 5, 10),
+        Item.new('Aged Brie', 3, 10),
       ]
     }
 
-    When { update_quality(items) }
+    before { update_quality(items) }
 
-    Then { items[0].quality.should == 9 }
-    Then { items[0].sell_in.should == 4 }
-
-    Then { items[1].quality.should == 11 }
-    Then { items[1].sell_in.should == 2 }
+    it { expect(items[0].quality).to eq(9) }
+    it { expect(items[0].sell_in).to eq(4) }
+    it { expect(items[1].quality).to eq(11) }
+    it { expect(items[1].sell_in).to eq(2) }
   end
 end

@@ -1,4 +1,4 @@
-require 'rspec/given'
+require 'rspec'
 require 'lib/gilded_rose'
 
 RSpec.describe '#update_quality' do

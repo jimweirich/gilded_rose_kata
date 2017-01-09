@@ -1,37 +1,38 @@
 require 'rspec/given'
 require 'gilded_rose'
 
-describe "#update_quality" do
+RSpec.describe '#update_quality' do
+  context 'with a single' do
+    let(:initial_sell_in) { 5 }
+    let(:initial_quality) { 10 }
 
-  context "with a single" do
-    Given(:initial_sell_in) { 5 }
-    Given(:initial_quality) { 10 }
-    Given(:item) { Item.new(name, initial_sell_in, initial_quality) }
+    let(:item) { Item.new(name, initial_sell_in, initial_quality) }
 
-    When { update_quality([item]) }
+    before { update_quality([item]) }
 
-    context "normal item" do
-      Given(:name) { "NORMAL ITEM" }
+    context 'normal item' do
+      let(:name) { 'NORMAL ITEM' }
 
-      Invariant { item.sell_in.should == initial_sell_in-1 }
+      before { expect(item.sell_in).to eq(initial_sell_in - 1) }
 
-      context "before sell date" do
-        Then { item.quality.should == initial_quality-1 }
+      context 'before sell date' do
+        it { expect(item.quality).to eq(initial_quality - 1) }
       end
 
-      context "on sell date" do
-        Given(:initial_sell_in) { 0 }
-        Then { item.quality.should == initial_quality-2 }
+      context 'on sell date' do
+        let(:initial_sell_in) { 0 }
+
+        it { expect(item.quality).to eq(initial_quality - 2) }
       end
 
-      context "after sell date" do
-        Given(:initial_sell_in) { -10 }
-        Then { item.quality.should == initial_quality-2 }
+      context 'after sell date' do
+        let(:initial_sell_in) { -10 }
+        it { expect(item.quality).to eq(initial_quality - 2) }
       end
 
-      context "of zero quality" do
-        Given(:initial_quality) { 0 }
-        Then { item.quality.should == 0 }
+      context 'of zero quality' do
+        let(:initial_quality) { 0 }
+        it { expect(item.quality).to eq(0) }
       end
     end
 

@@ -1,5 +1,7 @@
 # The Gilded Rose Code Kata
 
+[![Build Status](https://travis-ci.org/plainprogrammer/gilded_rose_kata.svg?branch=master)](https://travis-ci.org/plainprogrammer/gilded_rose_kata)
+
 This is a refactoring kata, so you will be starting with a legacy
 code base.  To work this kata, clone this repo and checkout `master` before
 pulling off a new branch to begin your work. Once you have your branch ready to

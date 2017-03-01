@@ -1,45 +1,45 @@
 def update_quality(items)
   items.each do |item|
-    if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
+    unless appreciating?(item) || ticketed?(item)
       if item.quality > 0
-        if item.name != 'Sulfuras, Hand of Ragnaros'
+        unless legendary?(item)
           item.quality -= 1
         end
       end
     else
-      if item.quality < 50
-        item.quality += 1
-        if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+      if can_appreciate?(item)
+        increment_quality(item)
+        if ticketed?(item)
           if item.sell_in < 11
-            if item.quality < 50
-              item.quality += 1
+            if can_appreciate?(item)
+              increment_quality(item)
             end
           end
           if item.sell_in < 6
-            if item.quality < 50
-              item.quality += 1
+            if can_appreciate?(item)
+              increment_quality(item)
             end
           end
         end
       end
     end
-    if item.name != 'Sulfuras, Hand of Ragnaros'
+    unless legendary?(item)
       item.sell_in -= 1
     end
     if item.sell_in < 0
-      if item.name != "Aged Brie"
-        if item.name != 'Backstage passes to a TAFKAL80ETC concert'
+      unless appreciating?(item)
+        unless ticketed?(item)
           if item.quality > 0
-            if item.name != 'Sulfuras, Hand of Ragnaros'
+            unless legendary?(item)
               item.quality -= 1
             end
           end
         else
-          item.quality = item.quality - item.quality
+          item.quality = 0
         end
       else
-        if item.quality < 50
-          item.quality += 1
+        if can_appreciate?(item)
+          increment_quality(item)
         end
       end
     end
@@ -60,4 +60,28 @@ Item = Struct.new(:name, :sell_in, :quality)
 #   Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 20),
 #   Item.new("Conjured Mana Cake", 3, 6),
 # ]
+
+def appreciating?(item)
+ item.name == 'Aged Brie'
+end
+
+def ticketed?(item)
+  item.name == 'Backstage passes to a TAFKAL80ETC concert'
+end
+
+def legendary?(item)
+  item.name == 'Sulfuras, Hand of Ragnaros'
+end
+
+def max_quality
+  50
+end
+
+def can_appreciate?(item)
+  item.quality < max_quality
+end
+
+def increment_quality(item)
+  item.quality += 1
+end
 

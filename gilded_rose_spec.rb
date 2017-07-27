@@ -224,3 +224,6 @@ describe "#update_quality" do
     Then { items[1].sell_in.should == 2 }
   end
 end
+
+
+

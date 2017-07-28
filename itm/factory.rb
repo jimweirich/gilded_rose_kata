@@ -8,6 +8,10 @@ class Itm
         QualityUpdater::BackstagePass.new
       when /Sulfuras, Hand of Ragnaros/
         QualityUpdater::Sulfuras.new
+      when /Sulfuras, Hand of Ragnaros/
+        QualityUpdater::Sulfuras.new
+      when /Conjured/
+        QualityUpdater::Conjured.new
       else
         QualityUpdater::Default.new
       end

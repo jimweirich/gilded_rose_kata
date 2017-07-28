@@ -9,7 +9,6 @@ class Itm
           fail UpdateNotImplemented
         end
 
-
         protected
 
         def update_quality(item, operation, value)

@@ -1,13 +1,13 @@
-class Item
+class Itm
   class QualityUpdater
     def call(item)
-      updater_for(item).call
+      updater_for(item.name).update(item)
     end
 
     private
 
-    def updater_for(item)
-      factory.call(item.name)
+    def updater_for(name)
+      factory.call(name)
     end
 
     def factory

@@ -1,7 +1,7 @@
-class Item
+class Itm
   class Factory
     class QualityUpdater
-      class BackstageConcert
+      class BackstagePass
       end
     end
   end

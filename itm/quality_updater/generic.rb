@@ -1,9 +1,12 @@
-class Item
+class Itm
   class Factory
     class QualityUpdater
-      class Default
+      class Generic
+
+        UpdateNotImplemented = Class.new(NotImplementedError)
 
         def update(item)
+          fail UpdateNotImplemented
         end
 
 
@@ -20,4 +23,3 @@ class Item
     end
   end
 end
-

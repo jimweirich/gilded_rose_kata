@@ -1,7 +1,7 @@
-class Itm
-  class QualityUpdater
+module OO
+  class DailyUpdater
     def call(item)
-      updater_for(item.name).update(item)
+      updater_for(item).update
     end
 
     private

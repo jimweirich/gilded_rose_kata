@@ -1,7 +1,7 @@
 require 'rspec'
 require 'lib/gilded_rose'
 
-RSpec.describe '#update_quality' do
+RSpec.describe 'update_quality' do
   context 'with a single' do
     let(:initial_sell_in) { 5 }
     let(:initial_quality) { 10 }

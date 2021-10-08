@@ -1,5 +1,7 @@
 # The Gilded Rose Code Kata
 
+![RSpec](https://github.com/plainprogrammer/GildedRose.rb/actions/workflows/rspec.yml/badge.svg)
+
 This is a refactoring kata, so you will be starting with a legacy
 code base.  To work this kata, clone this repo and checkout `master` before
 pulling off a new branch to begin your work. Once you have your branch ready to

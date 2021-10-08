@@ -74,7 +74,6 @@ Have a look at the Gemfile for all dependencies.
 ## Git Branches
 
 * The `main` branch contains the starting point for the kata.
-* The `solution1` branch is Jim Weirich's first solution for this kata.
 
 ## Changes from the original
 

@@ -1,7 +1,11 @@
+def decrement_quality(item)
+  item.quality -= 1 if item.quality > 0
+end
+
 def update_quality(items)
   items.each do |item|
     if item.name == 'NORMAL ITEM'
-      item.quality -= 1 if item.quality > 0
+      decrement_quality(item)
     else
       item.quality += 1 if item.quality < 50
 
@@ -24,7 +28,7 @@ def update_quality(items)
         if item.name == 'Backstage passes to a TAFKAL80ETC concert'
           item.quality = item.quality - item.quality
         else
-          item.quality -= 1 if item.quality > 0
+          decrement_quality(item)
         end
       else
         item.quality += 1 if item.quality < 50

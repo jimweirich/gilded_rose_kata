@@ -30,7 +30,7 @@ def update_backstage_pass(item)
 
   item.sell_in -= 1
 
-  item.quality = item.quality - item.quality if expired?(item)
+  item.quality = 0 if expired?(item)
 end
 
 def update_aged_brie(item)

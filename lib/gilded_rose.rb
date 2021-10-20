@@ -1,11 +1,7 @@
 def update_quality(items)
   items.each do |item|
-    if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
-      if item.quality > 0
-        if item.name != 'Sulfuras, Hand of Ragnaros'
-          item.quality -= 1
-        end
-      end
+    if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert' && item.name != 'Sulfuras, Hand of Ragnaros'
+      item.quality -= 1 if item.quality > 0
     else
       if item.quality < 50
         item.quality += 1

@@ -12,12 +12,11 @@ def update_quality(items)
     when 'NORMAL ITEM'
       decrement_quality(item)
     when 'Backstage passes to a TAFKAL80ETC concert'
-      increment_quality(item)
-
-      if item.sell_in < 11
-        increment_quality(item)
-      end
       if item.sell_in < 6
+        increment_quality(item, 3)
+      elsif item.sell_in < 11
+        increment_quality(item, 2)
+      else
         increment_quality(item)
       end
     else

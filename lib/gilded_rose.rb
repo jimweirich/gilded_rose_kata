@@ -14,9 +14,13 @@ def update_quality(items)
 end
 
 def update_normal_item(item)
-  decrement_quality(item)
   item.sell_in -= 1
-  decrement_quality(item) if expired?(item)
+
+  if expired?(item)
+    decrement_quality(item, 2)
+  else
+    decrement_quality(item)
+  end
 end
 
 def update_backstage_pass(item)
@@ -43,8 +47,8 @@ def update_aged_brie(item)
   end
 end
 
-def decrement_quality(item)
-  item.quality -= 1 if item.quality > 0
+def decrement_quality(item, amount = 1)
+  item.quality -= amount if item.quality > 0
 end
 
 def increment_quality(item, amount = 1)

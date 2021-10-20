@@ -20,17 +20,17 @@ def update_normal_item(item)
 end
 
 def update_backstage_pass(item)
-  if item.sell_in < 6
+  item.sell_in -= 1
+
+  if expired?(item)
+    item.quality = 0
+  elsif item.sell_in < 5
     increment_quality(item, 3)
-  elsif item.sell_in < 11
+  elsif item.sell_in < 10
     increment_quality(item, 2)
   else
     increment_quality(item)
   end
-
-  item.sell_in -= 1
-
-  item.quality = 0 if expired?(item)
 end
 
 def update_aged_brie(item)

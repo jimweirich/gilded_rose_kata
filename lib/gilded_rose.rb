@@ -28,13 +28,12 @@ def update_quality(items)
     end
 
     if item.sell_in < 0
-      if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+      case item.name
+      when 'Backstage passes to a TAFKAL80ETC concert'
         item.quality = item.quality - item.quality
-      end
-
-      if item.name == "Aged Brie" || item.name == 'Sulfuras, Hand of Ragnaros'
+      when 'Aged Brie'
         increment_quality(item)
-      else
+      when 'NORMAL ITEM'
         decrement_quality(item)
       end
     end

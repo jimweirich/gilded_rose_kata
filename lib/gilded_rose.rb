@@ -2,8 +2,8 @@ def decrement_quality(item)
   item.quality -= 1 if item.quality > 0
 end
 
-def increment_quality(item)
-  item.quality += 1 if item.quality < 50
+def increment_quality(item, amount = 1)
+  item.quality += amount if item.quality < 50
 end
 
 def update_quality(items)

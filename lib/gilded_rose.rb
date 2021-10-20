@@ -7,6 +7,8 @@ def update_quality(items)
       update_backstage_pass(item)
     when 'Aged Brie'
       update_aged_brie(item)
+    when 'Conjured Mana Cake'
+      update_conjured_item(item)
     else # Sulfuras
       #No-Op
     end
@@ -44,6 +46,16 @@ def update_aged_brie(item)
     increment_quality(item, 2)
   else
     increment_quality(item)
+  end
+end
+
+def update_conjured_item(item)
+  item.sell_in -= 1
+
+  if expired?(item)
+    decrement_quality(item, 4)
+  else
+    decrement_quality(item, 2)
   end
 end
 

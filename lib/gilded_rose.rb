@@ -15,6 +15,8 @@ def update_quality(items)
     case item.name
     when 'NORMAL ITEM'
       decrement_quality(item)
+      item.sell_in -= 1
+      decrement_quality(item) if expired?(item)
     when 'Backstage passes to a TAFKAL80ETC concert'
       if item.sell_in < 6
         increment_quality(item, 3)
@@ -23,23 +25,16 @@ def update_quality(items)
       else
         increment_quality(item)
       end
-    else
-      increment_quality(item)
-    end
 
-    unless item.name == 'Sulfuras, Hand of Ragnaros'
       item.sell_in -= 1
-    end
 
-    if expired?(item)
-      case item.name
-      when 'Backstage passes to a TAFKAL80ETC concert'
-        item.quality = item.quality - item.quality
-      when 'Aged Brie'
-        increment_quality(item)
-      when 'NORMAL ITEM'
-        decrement_quality(item)
-      end
+      item.quality = item.quality - item.quality if expired?(item)
+    when 'Aged Brie'
+      increment_quality(item)
+      item.sell_in -= 1
+      increment_quality(item) if expired?(item)
+    else # Sulfuras
+      #No-Op
     end
   end
 end

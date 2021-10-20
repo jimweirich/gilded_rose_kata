@@ -6,6 +6,10 @@ def increment_quality(item, amount = 1)
   item.quality += amount if item.quality < 50
 end
 
+def expired?(item)
+  item.sell_in < 0
+end
+
 def update_quality(items)
   items.each do |item|
     case item.name
@@ -27,7 +31,7 @@ def update_quality(items)
       item.sell_in -= 1
     end
 
-    if item.sell_in < 0
+    if expired?(item)
       case item.name
       when 'Backstage passes to a TAFKAL80ETC concert'
         item.quality = item.quality - item.quality

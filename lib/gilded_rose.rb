@@ -1,13 +1,16 @@
-def decrement_quality(item)
-  item.quality -= 1 if item.quality > 0
-end
-
-def increment_quality(item, amount = 1)
-  item.quality += amount if item.quality < 50
-end
-
-def expired?(item)
-  item.sell_in < 0
+def update_quality(items)
+  items.each do |item|
+    case item.name
+    when 'NORMAL ITEM'
+      update_normal_item(item)
+    when 'Backstage passes to a TAFKAL80ETC concert'
+      update_backstage_pass(item)
+    when 'Aged Brie'
+      update_aged_brie(item)
+    else # Sulfuras
+      #No-Op
+    end
+  end
 end
 
 def update_normal_item(item)
@@ -36,19 +39,16 @@ def update_aged_brie(item)
   increment_quality(item) if expired?(item)
 end
 
-def update_quality(items)
-  items.each do |item|
-    case item.name
-    when 'NORMAL ITEM'
-      update_normal_item(item)
-    when 'Backstage passes to a TAFKAL80ETC concert'
-      update_backstage_pass(item)
-    when 'Aged Brie'
-      update_aged_brie(item)
-    else # Sulfuras
-      #No-Op
-    end
-  end
+def decrement_quality(item)
+  item.quality -= 1 if item.quality > 0
+end
+
+def increment_quality(item, amount = 1)
+  item.quality += amount if item.quality < 50
+end
+
+def expired?(item)
+  item.sell_in < 0
 end
 
 #----------------------------

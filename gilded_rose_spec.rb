@@ -202,7 +202,7 @@ describe "#update_quality" do
   context "with several objects" do
     Given(:items) {
       [
-        Item.new("NORMAL ITEM", 5, 10),
+        Item.new("normal", 5, 10),
         Item.new("Aged Brie", 3, 10),
       ]
     }

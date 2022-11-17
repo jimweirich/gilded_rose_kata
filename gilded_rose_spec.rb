@@ -11,7 +11,7 @@ describe "#update_quality" do
     When { update_quality([item]) }
 
     context "normal item" do
-      Given(:name) { "NORMAL ITEM" }
+      Given(:name) { "normal" }
 
       Invariant { item.sell_in.should == initial_sell_in-1 }
 

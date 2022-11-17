@@ -1,3 +1,6 @@
+# RailsConf 2014 - All the Little Things by Sandi Metz
+https://youtu.be/8bZh5LMaSmE
+
 # The Gilded Rose Code Kata
 
 This is a Ruby version of the Gilded Rose Kata, found
